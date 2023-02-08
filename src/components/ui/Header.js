@@ -158,9 +158,6 @@ export default function Header(props){
                         }
                     }
                         break;
-                    case '/transfer':
-                        props.setValue(6);
-                        break;
                         default:
                             break;
                 }
@@ -190,18 +187,6 @@ export default function Header(props){
                         />
                 ))}
             </Tabs>
-            <Button 
-                variant='contained' 
-                color='secondary' 
-                style={{color:'white'}}
-
-                className={classes.button}  
-                component={Link} 
-                to='/transfer'
-                onClick={()=>props.setValue(6)}       
-            >
-                Transfer
-            </Button>
         </React.Fragment>
 
     );
