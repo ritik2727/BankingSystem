@@ -1,7 +1,7 @@
 import { createTheme } from '@material-ui/core/styles';
  
-const arcBlue = '#0B72B9';
-const arcOrange = '#FFBA60';
+const arcBlue = '#052391';
+const arcOrange = '#00E2F9';
 const arcGrey ='#868686'
  
 export default createTheme({

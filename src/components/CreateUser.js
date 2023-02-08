@@ -45,6 +45,9 @@ export default function CreateUser(){
     const [emailHelper,setEmailHelper] = useState('');
 
     const [phone,setPhone] = useState('');
+    const [age,setAge] = useState('');
+    
+
     const [phoneHelper,setPhoneHelper] = useState('');
 
     const [amount,setAmount] = useState(0)
@@ -108,7 +111,7 @@ export default function CreateUser(){
             name: name,
             email: email,
             phone: phone,
-            amount: amount
+            age: age,
         }).then(() => { 
             alert("Details have been saved")
             setLoading(false);
@@ -156,7 +159,19 @@ export default function CreateUser(){
                     style={{maxWidth:matchesXS ? '20em' : matchesSM? '25em' :'40em'}}
                 >
                 <Grid item style={{marginTop:'2em' ,marginBottom:'0.5em'}}>
-                    <Typography style={{color:theme.palette.common.blue}}>Name</Typography>
+                    <Typography style={{color:theme.palette.common.blue}}>First name</Typography>
+                    <TextField 
+                        id="name" 
+                        variant="outlined"
+                        fullWidth
+                        // error={senderEmailHelper.length !== 0}
+                        // helperText={senderEmailHelper}
+                        value={name}
+                        onChange={(e)=>setName(e.target.value)}
+                    />
+                </Grid>
+                <Grid item style={{marginTop:'2em' ,marginBottom:'0.5em'}}>
+                    <Typography style={{color:theme.palette.common.blue}}>Surname</Typography>
                     <TextField 
                         id="name" 
                         variant="outlined"
@@ -189,6 +204,46 @@ export default function CreateUser(){
                         helperText={phoneHelper}
                         value={phone}
                         onChange={onChange}
+                    />
+                </Grid>
+                <Grid item style={{marginBottom:'0.5em'}}>
+                    <Typography style={{color:theme.palette.common.blue}}>Age </Typography>
+                    <TextField 
+                        id="amount" 
+                        variant="outlined"
+                        fullWidth
+                        value={amount}
+                        onChange={onAmountChange}
+                    />
+                </Grid>
+                <Grid item style={{marginBottom:'0.5em'}}>
+                    <Typography style={{color:theme.palette.common.blue}}>Address </Typography>
+                    <TextField 
+                        id="amount" 
+                        variant="outlined"
+                        fullWidth
+                        value={amount}
+                        onChange={onAmountChange}
+                    />
+                </Grid>
+                <Grid item style={{marginBottom:'0.5em'}}>
+                    <Typography style={{color:theme.palette.common.blue}}>Street Address </Typography>
+                    <TextField 
+                        id="amount" 
+                        variant="outlined"
+                        fullWidth
+                        value={amount}
+                        onChange={onAmountChange}
+                    />
+                </Grid>
+                <Grid item style={{marginBottom:'0.5em'}}>
+                    <Typography style={{color:theme.palette.common.blue}}>Line 2 </Typography>
+                    <TextField 
+                        id="amount" 
+                        variant="outlined"
+                        fullWidth
+                        value={amount}
+                        onChange={onAmountChange}
                     />
                 </Grid>
                 <Grid item style={{marginBottom:'0.5em'}}>
