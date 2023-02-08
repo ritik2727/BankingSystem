@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles, Grid, Typography,useMediaQuery,useTheme ,Button} from '@material-ui/core';
 import { Link } from 'react-router-dom';
-
+import apexLogo from "../assests/ApexFin-Logo-Master.svg";
 
 
 const useStyles = makeStyles(theme=>({
@@ -51,10 +51,10 @@ export default function LandingPage(props){
             <Grid item className={classes.rowContainer} style={{marginTop:'1em'}}>
                 <Typography 
                     variant='h2' 
-                    style={{fontFamily:'Pacifico' }}
+                    style={{fontFamily:'Sans Serif' }}
                     align={matchesMD ? 'center' : undefined}
                 >
-                     Welcome to,RJ Bank
+                     Welcome to Apex Fintech Solutions
                 </Typography>
             </Grid>
             <Grid 
@@ -67,9 +67,9 @@ export default function LandingPage(props){
             >
                 <Grid item lg>
                     <img 
-                        src='https://pbs.twimg.com/media/EUkgup2WAAAoke0?format=jpg&name=small'
+                        src = {apexLogo}
                         alt='mountain' 
-                        style={{maxWidth:matchesSM ? 300 :'40em',
+                        style={{maxWidth:matchesSM ? 600 :'40em',
                                 marginRight:matchesMD ? 0 : '5em',
                                 marginBottom:matchesMD ? '5em' :0
                             }} 
@@ -79,13 +79,11 @@ export default function LandingPage(props){
                 <Grid item container direction='column' lg style={{maxWidth:'40em'}}>
                     <Grid item>
                         <Typography variant='h4' style={{textAlign:'center'}} gutterBottom align={matchesMD ? 'center' : 'inherit'}>
-                            BANKING SYSTEM
+                        Feeling the Retentless Fintech Revolution
                         </Typography>
                     </Grid>
                     <Grid item>
-                    <Typography variant='body1'  style={{textAlign:'center'}} paragraph align={matchesMD ? 'center' : 'inherit'}>
-                    Simpler. Faster. Safer
-                    </Typography>
+    
                     <Grid item align='center' style={{marginBottom:'3em'}}>
                         <Button variant='contained' className={classes.estimateButton}  
                                 component={Link} to='/create'

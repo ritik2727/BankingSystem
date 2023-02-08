@@ -25,13 +25,12 @@ export default function Footer() {
                     <Toolbar className={classes.center} >
                         <div>
                             <Typography variant="body2" style={{color:'white',textAlign:'center'}}>
-                                    Made By  Ritik Jain
                             </Typography>
                             <Typography variant="body2" style={{color:'white',textAlign:'center'}}>
-                                {'Copyright © '}
-                                    RJTech.com                   {' '}
-                                {new Date().getFullYear()}
-                                {'.'}
+                             
+                                    
+                    
+                       
                             </Typography>
                         </div>
                     </Toolbar>

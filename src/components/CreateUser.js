@@ -110,15 +110,17 @@ export default function CreateUser(){
             phone: phone,
             amount: amount
         }).then(() => { 
-            // alert("Details have been saved")
+            alert("Details have been saved")
             setLoading(false);
             setAlert({ open: true, color: "#4BB543" });
             setAlertMesssage("Customer Created Successfully !!");
+            console.log("Document successfully written!");
         }).catch((error) => { 
-            // alert(error.message) 
+            alert(error.message) 
             setLoading(false);
             setAlert({ open: true, color: "#FF3232" });
             setAlertMesssage("Something went wrong! Please try again.");
+            console.error("Error writing document: ", error);
         });
         setName('');
         setEmail('');
