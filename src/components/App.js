@@ -11,8 +11,6 @@ import Users from './Users';
 // import './ui/App.css'
 import './ui/History.css'
 import LandingPage from './LandingPage';
-import ContactUs from './ContactUs';
-import AboutUs from './AboutUs';
 
 function App() {
   const [value,setValue] = useState(0);
@@ -21,7 +19,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Header value={value}
-          setValue={setValue}
+          setValue={setValue}x
           selectedIndex={selectedIndex}
           setSelectedIndex={setSelectedIndex}
           />
@@ -47,8 +45,6 @@ function App() {
           <Route exact path='/history' component={History} />
           <Route exact path='/transfer' component={Transfer} />
           <Route exact path='/create' component={CreateUser} />
-          <Route exact path='/contact' component={ContactUs} />
-          <Route exact path='/about' component={AboutUs} />
          
           </Switch>
           {/*
