@@ -79,7 +79,7 @@ export default function LandingPage(props){
                 <Grid item container direction='column' lg style={{maxWidth:'40em'}}>
                     <Grid item>
                         <Typography variant='h4' style={{textAlign:'center'}} gutterBottom align={matchesMD ? 'center' : 'inherit'}>
-                        Feeling the Retentless Fintech Revolution
+                        Fueling the Retentless Fintech Revolution
                         </Typography>
                     </Grid>
                     <Grid item>
@@ -95,7 +95,18 @@ export default function LandingPage(props){
                         Create New Account
                         </Button>
                     </Grid>
-                    
+                    <Grid item align='center' style={{marginBottom:'3em'}}>
+                        <Button variant='contained' className={classes.estimateButton}  
+                                component={Link} to='/create'
+                                style={{color:'white'}}
+                                onClick = {()=>{
+                                    props.setValue(3)
+                                }}
+                        >
+                        Log In
+                        </Button>
+                    </Grid>
+
                     </Grid>
                 </Grid>
             </Grid>
