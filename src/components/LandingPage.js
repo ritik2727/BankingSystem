@@ -47,7 +47,8 @@ export default function LandingPage(props){
 
 
     return(
-        <Grid container direction='column'>
+        <body style={{backgroundColor: 'black'}}>
+        <Grid container direction='column'  >
             <Grid item className={classes.rowContainer} style={{marginTop:'1em'}}>
                 <Typography 
                     variant='h2' 
@@ -156,6 +157,7 @@ export default function LandingPage(props){
             </Grid> */}
 
         </Grid>
+        </body>
     )
 
 }

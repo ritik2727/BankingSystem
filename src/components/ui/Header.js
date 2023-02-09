@@ -28,10 +28,10 @@ const useStyles = makeStyles(theme=>({
         ...theme.mixins.toolbar,
         marginBottom:'3em',
         [theme.breakpoints.down('md')]:{
-            marginBottom:'2em'
+            marginBottom:'1em'
         },
         [theme.breakpoints.down('xs')]:{
-            marginBottom:'1.25em'
+            marginBottom:'0.75em'
         }
     },
     logo:{
