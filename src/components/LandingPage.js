@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles, Grid, Typography,useMediaQuery,useTheme ,Button} from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import apexLogo from "../assests/ApexFin-Logo-Master.svg";
+import apexLogo from "../assests/ApexFin-Logo-Reverse.svg";
 
 
 const useStyles = makeStyles(theme=>({
@@ -79,7 +79,7 @@ export default function LandingPage(props){
                 <Grid item container direction='column' lg style={{maxWidth:'40em'}}>
                     <Grid item>
                         <Typography variant='h4' style={{textAlign:'center'}} gutterBottom align={matchesMD ? 'center' : 'inherit'}>
-                        Fueling the Retentless Fintech Revolution
+                        Fueling the Relentless Fintech Revolution
                         </Typography>
                     </Grid>
                     <Grid item>

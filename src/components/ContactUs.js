@@ -321,7 +321,7 @@ export default function ContactUs(props){
                 item 
                 container 
                 direction={matchesMD ? 'column' : 'row'}
-                // className={classes.background} 
+                className={classes.background} 
                 alignItems='center'
                 justifyContent={matchesMD ? 'center' : undefined}
                 lg={7}

@@ -2,49 +2,54 @@ import { createTheme } from '@material-ui/core/styles';
  
 const arcBlue = '#052391';
 const arcOrange = '#00E2F9';
-const arcGrey ='#868686'
+const arcGrey ='#FFFFFF';
+const arcBlack ='#000000';
  
 export default createTheme({
   palette: {
     common: {
       blue: arcBlue,
-      orange: arcOrange
+      orange: arcOrange,
+      black: arcBlack
     },
     primary: {
       main: arcBlue
     },
     secondary: {
       main: arcOrange
+    },
+    background: {
+      main: arcBlack
     }
   },
   typography:{
       tab:{
-        fontFamily:'Raleway',
+        fontFamily:'Lato',
         textTransform:'none',
         fontWeight:700,
         fontSize:'1rem',
         color:'white'
       },
       estimate:{
-        fontFamily:'Pacifico',
+        fontFamily:'Lato',
         fontSize:'1rem',
         textTransform:'none',
         color:'white'
       },
       h2:{
-        fontFamily:'Raleway',
+        fontFamily:'Lato',
         fontWeight:700,
         fontSize:'2.5rem',
         color:arcBlue,
         lineHeight:1.5
       },
       h3: {
-        fontFamily: "Pacifico",
+        fontFamily: "Lato",
         fontSize: "2.5rem",
         color: arcBlue
       },
       h4:{
-        fontFamily:'Raleway',
+        fontFamily:'Poppins',
         fontSize:'1.75rem',
         color:arcBlue,
         fontWeight:700
@@ -75,11 +80,19 @@ export default createTheme({
         textTransform: "none",
         color: arcBlue,
         borderRadius: 50,
-        fontFamily: "Roboto",
+        fontFamily: "Poppins",
         fontWeight: "bold"
       }
   },
   overrides :{
+    MuiGrid:{
+      root: {
+      height: '100%',
+      width: '100%',
+      color: arcBlack
+      }
+    },
+
     MuiInputLabel:{
       root:{
         color:arcBlue,
