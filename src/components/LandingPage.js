@@ -74,39 +74,31 @@ export default function LandingPage(props){
     return(
 
         <body style={{backgroundColor: 'black'}}>
-        <Grid container direction='column'  >
-            <Grid item className={classes.rowContainer} style={{marginTop:'1em'}}>
+        <Grid container direction='column'  align='center' >
+            <Grid item className={classes.rowContainer} style={{marginTop:'2em'}}>
                 <Typography 
                     variant='h2' 
-                    style={{fontFamily:'Sans Serif' }}
+                    style={{fontFamily:'Sans Serif', padding: '20px,20px,20px,20px' }}
                     align={matchesMD ? 'center' : undefined}
                 >
                      Welcome to Apex Fintech Solutions
                 </Typography>
             </Grid>
-            <Grid>
-            </Grid>
-            <Grid 
-                item 
-                container 
-                direction={matchesMD ? 'column' : 'row' }
-                className={classes.rowContainer}
-                alignItems='center'
-                style={{marginTop:' 2em',marginBottom:'1.7em'}}
-            >
+          
+         
                 <Grid item lg>
                     <img 
                         src = {apexLogo}
                         alt='mountain' 
                         style={{maxWidth:matchesSM ? 600 :'40em',
                                 marginRight:matchesMD ? 0 : '5em',
-                                marginBottom:matchesMD ? '5em' :0
+                                marginBottom:matchesMD ? '5em' :0,
+                                padding:'10px'
                             }} 
                     />
                 </Grid>
 
-                <Grid item container direction='column' lg style={{maxWidth:'40em'}}>
-                    <Grid item>
+                    <Grid item align='center' >
                         <Typography variant='h4' style={{textAlign:'center'}} gutterBottom align={matchesMD ? 'center' : 'inherit'}>
                         Fueling the Relentless Fintech Revolution
                         </Typography>
@@ -125,8 +117,8 @@ export default function LandingPage(props){
                         </Button> : <Login />}
                     </Grid>
                     </Grid>
-                </Grid>
-            </Grid>
+                
+       
             
             {/* <Grid 
                 item 
