@@ -27,10 +27,6 @@ export default function Footer() {
                             <Typography variant="body2" style={{color:'white',textAlign:'center'}}>
                             </Typography>
                             <Typography variant="body2" style={{color:'white',textAlign:'center'}}>
-                             
-                                    
-                    
-                       
                             </Typography>
                         </div>
                     </Toolbar>
