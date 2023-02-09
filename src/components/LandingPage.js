@@ -117,18 +117,24 @@ export default function LandingPage(props){
                     <Grid item align='center' style={{marginBottom:'3em'}}>
                     {user ?     <Button variant='contained' className={classes.estimateButton}  
                                 component={Link} to='/create'
-                                style={{color:'black'}}
+                                style={{color:'white'}}
                                 onClick = {()=>{
                                     props.setValue(3)
                                 }}
                         >
                         Create New Account
-          </Button> : <Login/>}                
-                        </Grid>
-              
-                    <Grid>
-                   
-
+                        </Button>
+                    </Grid>
+                    <Grid item align='center' style={{marginBottom:'3em'}}>
+                        <Button variant='contained' className={classes.estimateButton}  
+                                component={Link} to='/create'
+                                style={{color:'white'}}
+                                onClick = {()=>{
+                                    props.setValue(3)
+                                }}
+                        >
+                        Log In
+                        </Button>
                     </Grid>
 
                     </Grid>

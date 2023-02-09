@@ -31,16 +31,16 @@ export default createTheme({
         color:'white'
       },
       estimate:{
-        fontFamily:'Roboto',
+        fontFamily:'Lato',
         fontSize:'1rem',
         textTransform:'none',
-        color:'black'
+        color:'white'
       },
       h2:{
         fontFamily:'Lato',
         fontWeight:700,
         fontSize:'2.5rem',
-        color:arcBlue,
+        color:arcGrey,
         lineHeight:1.5
       },
       h3: {
@@ -51,7 +51,7 @@ export default createTheme({
       h4:{
         fontFamily:'Poppins',
         fontSize:'1.75rem',
-        color:arcBlue,
+        color:arcGrey,
         fontWeight:700
       },
       subtitle1:{
