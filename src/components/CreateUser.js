@@ -40,9 +40,7 @@ export default function CreateUser() {
 
 
 
-    const [name, setName] = useState('');
-
-    const [email, setEmail] = useState('');
+  
     const [emailHelper, setEmailHelper] = useState('');
 
     const [phone, setPhone] = useState('');
@@ -143,7 +141,6 @@ console.log(user)
             postcode: postcode,
 
         }).then(() => {
-            alert("Details have been saved")
             setLoading(false);
             setAlert({ open: true, color: "#4BB543" });
             setAlertMesssage("Customer Created Successfully !!");
