@@ -26,10 +26,10 @@ export default createTheme({
         color:'white'
       },
       estimate:{
-        fontFamily:'Pacifico',
+        fontFamily:'Roboto',
         fontSize:'1rem',
         textTransform:'none',
-        color:'white'
+        color:'black'
       },
       h2:{
         fontFamily:'Raleway',
