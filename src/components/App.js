@@ -9,6 +9,7 @@ import theme from "./ui/Theme";
 import Users from './Users';
 import OpenBrokerAccount from './OpenBrokerAccount';
 import UploadDocumnets from './UploadDocuments';
+import CreateAccount from './CreateAccount'
 // import './ui/App.css'
 import './ui/History.css'
 import LandingPage from './LandingPage';
@@ -47,14 +48,11 @@ function App() {
           <Route exact path='/create' component={CreateUser} />
           <Route exact path='/open' component={OpenBrokerAccount} />
           <Route exact path='/upload' component={UploadDocumnets} />
+          <Route exact path ='/account' component={CreateAccount} />
           
           </Switch>
 
-      <Footer value={value}
-          setValue={setValue}
-          selectedIndex={selectedIndex}
-          setSelectedIndex={setSelectedIndex} 
-      />
+
     </BrowserRouter>
 
     </ThemeProvider>
