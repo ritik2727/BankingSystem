@@ -2,6 +2,15 @@ import React from 'react';
 import { makeStyles, Grid, Typography,useMediaQuery,useTheme ,Button} from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import apexLogo from "../assests/ApexFin-Logo-Master.svg";
+import { useState, useEffect } from 'react';
+import Login from './Login';
+import Logout from './Logout'
+import {auth} from "../firebase";
+import profile from "./profile"
+import { Gif, Home } from '@material-ui/icons';
+
+
+
 
 
 const useStyles = makeStyles(theme=>({
@@ -30,11 +39,22 @@ const useStyles = makeStyles(theme=>({
 
 export default function LandingPage(props){
     const classes = useStyles();
-
+ var isLoggedIn = false
     const theme = useTheme();
     const matchesMD = useMediaQuery(theme.breakpoints.down('md'));
     const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
-
+    const [user, setUser] = useState(null);
+    let button;
+     button = <Login/>;
+    
+    useEffect(() => {
+      auth.onAuthStateChanged(user => {
+        setUser(user);
+         button = <Logout/>;
+      })
+    }, [])
+  
+    console.log(user);
 
     // const techOptions = {
     //     loop: true,
@@ -44,9 +64,15 @@ export default function LandingPage(props){
     //       preserveAspectRatio: 'xMidYMid slice'
     //     }
     // }
+   
+
+     
+
+
 
 
     return(
+
         <Grid container direction='column'>
             <Grid item className={classes.rowContainer} style={{marginTop:'1em'}}>
                 <Typography 
@@ -56,6 +82,8 @@ export default function LandingPage(props){
                 >
                      Welcome to Apex Fintech Solutions
                 </Typography>
+            </Grid>
+            <Grid>
             </Grid>
             <Grid 
                 item 
@@ -85,31 +113,26 @@ export default function LandingPage(props){
                     <Grid item>
     
                     <Grid item align='center' style={{marginBottom:'3em'}}>
-                        <Button variant='contained' className={classes.estimateButton}  
+                    {user ?     <Button variant='contained' className={classes.estimateButton}  
                                 component={Link} to='/create'
-                                style={{color:'white'}}
+                                style={{color:'black'}}
                                 onClick = {()=>{
                                     props.setValue(3)
                                 }}
                         >
                         Create New Account
-                        </Button>
-                    </Grid>
-                    <Grid item align='center' style={{marginBottom:'3em'}}>
-                        <Button variant='contained' className={classes.estimateButton}  
-                                component={Link} to='/create'
-                                style={{color:'white'}}
-                                onClick = {()=>{
-                                    props.setValue(3)
-                                }}
-                        >
-                        Log In
-                        </Button>
+                        </Button> : <Login/>}                
+                        </Grid>
+              
+                    <Grid>
+                   
+
                     </Grid>
 
                     </Grid>
                 </Grid>
             </Grid>
+            
             {/* <Grid 
                 item 
                 container 
