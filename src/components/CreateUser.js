@@ -1,7 +1,7 @@
 import { Button, Grid, useTheme, useMediaQuery, makeStyles, Typography, TextField, CircularProgress, Snackbar } from '@material-ui/core';
 import e from 'cors';
-import React, { useState } from 'react';
-import { db } from "../firebase";
+import React, { useState,useEffect } from 'react';
+import { db,auth } from "../firebase";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -76,7 +76,13 @@ export default function CreateUser() {
 
     const [alert, setAlert] = useState({ open: false, color: "" });
     const [alertMessage, setAlertMesssage] = useState("");
-
+   
+   // const [user, setUser] = useState(auth.currentUser);
+    var user = auth.currentUser;
+console.log(user)
+    const [name,setName] = useState(user.displayName);
+    
+    const [email,setEmail] = useState(user.email);
     const onAmountChange = (e) => {
         const amount = e.target.value;
         if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
@@ -142,8 +148,7 @@ export default function CreateUser() {
             setAlert({ open: true, color: "#4BB543" });
             setAlertMesssage("Customer Created Successfully !!");
             console.log("Document successfully written!");
-        }).catch((error) => {
-            alert(error.message)
+        }).catch((error) => { 
             setLoading(false);
             setAlert({ open: true, color: "#FF3232" });
             setAlertMesssage("Something went wrong! Please try again.");

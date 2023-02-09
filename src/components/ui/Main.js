@@ -6,8 +6,8 @@ import { makeStyles } from '@material-ui/core';
 
 
 const useStyles = makeStyles(theme=>({
-    footer:{
-        background:theme.palette.common.blue,
+    main:{
+        background:theme.palette.common.black,
         top:"auto",
         bottom:"0px",
     },
@@ -16,17 +16,21 @@ const useStyles = makeStyles(theme=>({
     },
 }))
 
-export default function Footer() {
+export default function Main() {
     const classes = useStyles();
 
         return (
             <div>
-                <AppBar className={classes.footer}>
+                <AppBar className={classes.main}>
                     <Toolbar className={classes.center} >
                         <div>
                             <Typography variant="body2" style={{color:'white',textAlign:'center'}}>
                             </Typography>
                             <Typography variant="body2" style={{color:'white',textAlign:'center'}}>
+                             
+                                    
+                    
+                       
                             </Typography>
                         </div>
                     </Toolbar>
@@ -34,4 +38,3 @@ export default function Footer() {
             </div>
         )
     }
-
