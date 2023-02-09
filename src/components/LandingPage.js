@@ -88,7 +88,7 @@ export default function LandingPage(props){
                     <Grid item align='center' style={{marginBottom:'3em'}}>
                         <Button variant='contained' className={classes.estimateButton}  
                                 component={Link} to='/create'
-                                style={{color:'black'}}
+                                style={{color:'white'}}
                                 onClick = {()=>{
                                     props.setValue(3)
                                 }}
@@ -99,7 +99,7 @@ export default function LandingPage(props){
                     <Grid item align='center' style={{marginBottom:'3em'}}>
                         <Button variant='contained' className={classes.estimateButton}  
                                 component={Link} to='/create'
-                                style={{color:'black'}}
+                                style={{color:'white'}}
                                 onClick = {()=>{
                                     props.setValue(3)
                                 }}
