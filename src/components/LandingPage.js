@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles, Grid, Typography,useMediaQuery,useTheme ,Button} from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
-import apexLogo from "../assests/ApexFin-Logo-Master.svg";
 import { useState, useEffect } from 'react';
 import Login from './Login';
 import Logout from './Logout'
@@ -123,20 +122,8 @@ export default function LandingPage(props){
                                 }}
                         >
                         Create New Account
-                        </Button>
+                        </Button> : <Login />}
                     </Grid>
-                    <Grid item align='center' style={{marginBottom:'3em'}}>
-                        <Button variant='contained' className={classes.estimateButton}  
-                                component={Link} to='/create'
-                                style={{color:'white'}}
-                                onClick = {()=>{
-                                    props.setValue(3)
-                                }}
-                        >
-                        Log In
-                        </Button>
-                    </Grid>
-
                     </Grid>
                 </Grid>
             </Grid>
