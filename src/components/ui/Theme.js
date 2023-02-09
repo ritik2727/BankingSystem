@@ -31,10 +31,10 @@ export default createTheme({
         color:'white'
       },
       estimate:{
-        fontFamily:'Lato',
+        fontFamily:'Roboto',
         fontSize:'1rem',
         textTransform:'none',
-        color:'white'
+        color:'black'
       },
       h2:{
         fontFamily:'Lato',
