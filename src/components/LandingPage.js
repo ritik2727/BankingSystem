@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles, Grid, Typography,useMediaQuery,useTheme ,Button} from '@material-ui/core';
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
+
 import apexLogo from "../assests/ApexFin-Logo-Master.svg";
 import { useState, useEffect } from 'react';
 import Login from './Login';
@@ -10,11 +10,8 @@ import {auth} from "../firebase";
 import profile from "./profile"
 import { Gif, Home } from '@material-ui/icons';
 
-
-
-=======
 import apexLogo from "../assests/ApexFin-Logo-Reverse.svg";
->>>>>>> f777ab608e40f879d3cc46e7a56f83ec6abf22a6
+
 
 
 const useStyles = makeStyles(theme=>({
@@ -76,13 +73,9 @@ export default function LandingPage(props){
 
 
     return(
-<<<<<<< HEAD
 
-        <Grid container direction='column'>
-=======
         <body style={{backgroundColor: 'black'}}>
         <Grid container direction='column'  >
->>>>>>> f777ab608e40f879d3cc46e7a56f83ec6abf22a6
             <Grid item className={classes.rowContainer} style={{marginTop:'1em'}}>
                 <Typography 
                     variant='h2' 
@@ -130,27 +123,12 @@ export default function LandingPage(props){
                                 }}
                         >
                         Create New Account
-<<<<<<< HEAD
-                        </Button> : <Login/>}                
+          </Button> : <Login/>}                
                         </Grid>
               
                     <Grid>
                    
 
-=======
-                        </Button>
-                    </Grid>
-                    <Grid item align='center' style={{marginBottom:'3em'}}>
-                        <Button variant='contained' className={classes.estimateButton}  
-                                component={Link} to='/create'
-                                style={{color:'black'}}
-                                onClick = {()=>{
-                                    props.setValue(3)
-                                }}
-                        >
-                        Log In
-                        </Button>
->>>>>>> f777ab608e40f879d3cc46e7a56f83ec6abf22a6
                     </Grid>
 
                     </Grid>
