@@ -1,4 +1,5 @@
 import { Button, Grid, useTheme, useMediaQuery, makeStyles, Typography, TextField, CircularProgress, Snackbar } from '@material-ui/core';
+import e from 'cors';
 import React, { useState } from 'react';
 import { db } from "../firebase";
 
@@ -45,7 +46,26 @@ export default function CreateUser() {
     const [emailHelper, setEmailHelper] = useState('');
 
     const [phone, setPhone] = useState('');
-    const [age, setAge] = useState('');
+    const [DOB, setDOB] = useState('');
+    const [DOBHelper, setDOBHelper] = useState(''); 
+
+    const [homeAddress, setHomeAddress] = useState('');
+    const [homeAddressddressHelper, setHomeAddressHelper] = useState('');
+
+    const [addressLine2, setAddressLine2] = useState('');
+    const [addressLine2Helper, setAddressLine2Helper] = useState('');
+
+    const [city, setCity] = useState('');
+    const [cityHelper, setCityHelper] = useState('');
+
+    const [province, setProvince] = useState('');
+    const [provinceHelper, setProvinceHelper] = useState('');
+
+    const [postcode, setPostcode] = useState('');
+    const [postcodeHelper, setPostcodeHelper] = useState('');
+
+    const [password, setPassword] = useState('');
+    const [passwordHelper, setPasswordHelper] = useState('');
 
 
     const [phoneHelper, setPhoneHelper] = useState('');
@@ -109,7 +129,13 @@ export default function CreateUser() {
             name: name,
             email: email,
             phone: phone,
-            age: age,
+            DOB: DOB,
+            homeAddress: homeAddress,
+            addressLine2: addressLine2,
+            city: city,
+            province: province,
+            postcode: postcode,
+
         }).then(() => {
             alert("Details have been saved")
             setLoading(false);
@@ -124,9 +150,14 @@ export default function CreateUser() {
             console.error("Error writing document: ", error);
         });
         setName('');
+        setDOB('');
         setEmail('');
         setPhone('');
-        setAmount('');
+        setHomeAddress('');
+        setAddressLine2('');
+        setCity('');
+        setProvince('');
+        setPostcode('');
     }
 
     return (
@@ -139,7 +170,7 @@ export default function CreateUser() {
             marginBottom: matchesMD ? '5em' : undefined
         }}
     >
-        <Grid item>
+        <Grid item style={{paddingBottom:50}}>
             <Grid item container direction='column' style={{alignItems:'center'}}>
                 <Grid item>
                     <Typography
@@ -147,7 +178,7 @@ export default function CreateUser() {
                         align= 'center'
                         style={{lineHeight:1}}
                     >
-                        Create New User
+                        Register
                     </Typography>
                 </Grid>
                 <Grid
@@ -157,43 +188,91 @@ export default function CreateUser() {
                     style={{maxWidth:matchesXS ? '20em' : matchesSM? '25em' :'40em'}}
                 >
                 <Grid item style={{marginTop:'2em' ,marginBottom:'0.5em'}}>
-                    <Typography style={{color:theme.palette.common.blue}}>First name</Typography>
+                    <Typography style={{color:'#FF0000', padding:10, fontSize:'0.9rem'}}>You must be over 18 and a legal resident of Canada to continue</Typography>
                     <TextField
                         id="name"
                         variant="outlined"
+                        label="required"
+                        required
+                        placeholder="Name"
                         fullWidth
-                        // error={senderEmailHelper.length !== 0}
-                        // helperText={senderEmailHelper}
+                        //error={senderEmailHelper.length !== 0}
+                         //helperText={senderEmailHelper}
                         value={name}
                         onChange={(e)=>setName(e.target.value)}
                     />
                 </Grid>
-                <Grid item style={{marginTop:'2em' ,marginBottom:'0.5em'}}>
-                    <Typography style={{color:theme.palette.common.blue}}>Surname</Typography>
+            
+                <Grid item style={{marginBottom:'0.5em'}}>
+                    <Typography style={{color:theme.palette.common.blue}}>DOB</Typography>
+                    <input type="date" id="start" name="trip-start"
+                    value={DOB}
+                    onChange={(e)=>setDOB(e.target.value)}
+                    min="2002-00-00" max="40-12-31"></input>
+                </Grid>
+                <Grid item style={{marginBottom:'0.5em'}}>
+                <Typography style={{color:theme.palette.common.blue}}>Home Address.</Typography>
                     <TextField
-                        id="name"
+                        id="homeAddress"
                         variant="outlined"
                         fullWidth
-                        // error={senderEmailHelper.length !== 0}
-                        // helperText={senderEmailHelper}
-                        value={name}
-                        onChange={(e)=>setName(e.target.value)}
+                        //error={homeAddressHelper.length !== 0}
+                        //helperText={homeAddressHelper}
+                        value={homeAddress}
+                        onChange={(e)=>setHomeAddress(e.target.value)}
                     />
                 </Grid>
                 <Grid item style={{marginBottom:'0.5em'}}>
-                    <Typography style={{color:theme.palette.common.blue}}>Enter your E-mail</Typography>
+                    <Typography style={{color:theme.palette.common.blue}}>Address Line 2 </Typography>
                     <TextField
-                        id="email"
+                        id="addressLine2"
                         variant="outlined"
                         fullWidth
-                        error={emailHelper.length !== 0}
-                        helperText={emailHelper}
-                        value={email}
-                        onChange={onChange}
+                        //error={addressLine2Helper.length !== 0}
+                        //helperText={addressLine2Helper}
+                        value={addressLine2}
+                        onChange={(e)=>setAddressLine2(e.target.value)}
+
+
                     />
                 </Grid>
                 <Grid item style={{marginBottom:'0.5em'}}>
-                <Typography style={{color:theme.palette.common.blue}}>Phone No.</Typography>
+                    <Typography style={{color:theme.palette.common.blue}}>City</Typography>
+                    <TextField
+                        id="city"
+                        variant="outlined"
+                        fullWidth
+                        value={city}
+                        onChange={(e)=>setCity(e.target.value)}
+
+
+                    />
+                </Grid>
+                <Grid item style={{marginBottom:'0.5em'}}>
+                    <Typography style={{color:theme.palette.common.blue}}>Province</Typography>
+                    <TextField
+                        id="province"
+                        variant="outlined"
+                        fullWidth
+                        value={province}
+                        onChange={(e)=>setProvince(e.target.value)}
+
+                    />
+                </Grid>
+                <Grid item style={{marginBottom:'0.5em'}}>
+                    <Typography style={{color:theme.palette.common.blue}}>Postcode</Typography>
+                    <TextField
+                        id="postcode"
+                        variant="outlined"
+                        fullWidth
+                        value={postcode}
+                        onChange={(e)=>setPostcode(e.target.value)}
+
+
+                    />
+                </Grid>
+                <Grid item style={{marginBottom:'0.5em'}}>
+                <Typography style={{color:theme.palette.common.blue}}>Phone Number.</Typography>
                     <TextField
                         id="phone"
                         variant="outlined"
@@ -205,75 +284,17 @@ export default function CreateUser() {
                     />
                 </Grid>
                 <Grid item style={{marginBottom:'0.5em'}}>
-                    <Typography style={{color:theme.palette.common.blue}}>Age </Typography>
+                    <Typography style={{color:theme.palette.common.blue}}>Email Address</Typography>
                     <TextField
-                        id="amount"
+                        id="email"
                         variant="outlined"
                         fullWidth
-                        value={amount}
-                        onChange={onAmountChange}
+                        error={emailHelper.length !== 0}
+                        helperText={emailHelper}
+                        value={email}
+                        onChange={(e)=>setEmail(e.target.value)}
                     />
                 </Grid>
-                <Grid item style={{marginBottom:'0.5em'}}>
-                    <Typography style={{color:theme.palette.common.blue}}>Address </Typography>
-                    <TextField
-                        id="amount"
-                        variant="outlined"
-                        fullWidth
-                        value={amount}
-                        onChange={onAmountChange}
-                    />
-                </Grid>
-                <Grid item style={{marginBottom:'0.5em'}}>
-                    <Typography style={{color:theme.palette.common.blue}}>Street Address </Typography>
-                    <TextField
-                        id="amount"
-                        variant="outlined"
-                        fullWidth
-                        value={amount}
-                        onChange={onAmountChange}
-                    />
-                </Grid>
-                <Grid item style={{marginBottom:'0.5em'}}>
-                    <Typography style={{color:theme.palette.common.blue}}>Line 2 </Typography>
-                    <TextField
-                        id="amount"
-                        variant="outlined"
-                        fullWidth
-                        value={amount}
-                        onChange={onAmountChange}
-                    />
-                </Grid>
-                <Grid item style={{marginBottom:'0.5em'}}>
-                    <Typography style={{color:theme.palette.common.blue}}>Province </Typography>
-                    <TextField
-                        id="amount"
-                        variant="outlined"
-                        fullWidth
-                        value={amount}
-                        onChange={onAmountChange}
-                    />
-                </Grid>
-                <Grid item style={{marginBottom:'0.5em'}}>
-                    <Typography style={{color:theme.palette.common.blue}}>Postcode </Typography>
-                    <TextField
-                        id="amount"
-                        variant="outlined"
-                        fullWidth
-                        value={amount}
-                        onChange={onAmountChange}
-                    />
-                </Grid>
-                <Grid item style={{ marginBottom: '0.5em' }}>
-                                    <Typography style={{ color: theme.palette.common.blue }}>Password </Typography>
-                                    <TextField
-                                        id="amount"
-                                        variant="outlined"
-                                        fullWidth
-                                        value={amount}
-                                        onChange={onAmountChange}
-                                    />
-                                </Grid>
 
                 <Grid item container justifyContent='center' style={{marginTop:'2em'}}>
                     <Button
