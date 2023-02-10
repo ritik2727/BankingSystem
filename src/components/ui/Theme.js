@@ -89,7 +89,7 @@ export default createTheme({
       root: {
       height: '100%',
       width: '100%',
-      color: arcBlack
+      color: arcBlack,
       }
     },
 
