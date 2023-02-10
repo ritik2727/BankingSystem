@@ -43,7 +43,7 @@ export default function CreateAccount() {
     console.log(user)
      useEffect(() => {
         const getDataFromFirebase = [];
-        const subscriber = db.collection('users').where('email', '==', "lvallely@apexfintechsolutions.com"
+        const subscriber = db.collection('users').where('email', '==', "ctaylor@apexfintechsolutions.com"
          ).onSnapshot((querySnapshot) => {
           querySnapshot.forEach((doc) => {
             getDataFromFirebase.push({ ...doc.data(), key: doc.id });
