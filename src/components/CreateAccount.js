@@ -245,6 +245,15 @@ export default function CreateAccount() {
                     <input type="number" min="0"  step="1" />
                 </Grid>
                 <Grid item style={{marginBottom:'0.5em'}}>
+                    <Typography style={{color:theme.palette.common.blue}}>DOB</Typography>
+                    <input type="date" id="start" name="trip-start"
+                    value={DOB}
+                    onChange={(e)=>setDOB(e.target.value)}
+                    min="2002-00-00" max="40-12-31"></input>
+                </Grid>
+                
+                
+                <Grid item style={{marginBottom:'0.5em'}}>
                     <Typography style={{color:theme.palette.common.blue}}>Address Line 2 </Typography>
                     <TextField
                         id="addressLine2"
