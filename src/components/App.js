@@ -7,6 +7,7 @@ import Footer from './ui/Footer';
 import Header from './ui/Header';
 import theme from "./ui/Theme";
 import Users from './Users';
+import Welcome from './Welcome';
 import OpenBrokerAccount from './OpenBrokerAccount';
 import UploadDocumnets from './UploadDocuments';
 import CreateAccount from './CreateAccount'
@@ -48,8 +49,13 @@ function App() {
           <Route exact path='/create' component={CreateUser} />
           <Route exact path='/open' component={OpenBrokerAccount} />
           <Route exact path='/upload' component={UploadDocumnets} />
+<<<<<<< HEAD
           <Route exact path ='/account' component={CreateAccount} />
           
+=======
+          <Route exact path='/welcome' component={Welcome} />
+
+>>>>>>> 1c59f132690ea7a9415d0a555bc6b50920388723
           </Switch>
 
 

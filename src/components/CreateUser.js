@@ -2,6 +2,9 @@ import { Button, Grid, useTheme, useMediaQuery, makeStyles, Typography, TextFiel
 import e from 'cors';
 import React, { useState,useEffect } from 'react';
 import { db,auth } from "../firebase";
+import { useHistory } from 'react-router-dom';
+import Welcome from './Welcome';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -75,8 +78,8 @@ export default function CreateUser() {
     const [alert, setAlert] = useState({ open: false, color: "" });
     const [alertMessage, setAlertMesssage] = useState("");
    
-   // const [user, setUser] = useState(auth.currentUser);
-    var user = auth.currentUser;
+   const [user, setUser] = useState(auth.currentUser);
+    // var user = auth.currentUser;
 console.log(user)
     const [name,setName] = useState(user.displayName);
     
@@ -87,6 +90,8 @@ console.log(user)
             setAmount(amount);
         }
     }
+
+    const history = useHistory();
 
     const onChange = event => {
         let valid;
@@ -150,6 +155,12 @@ console.log(user)
             setAlert({ open: true, color: "#FF3232" });
             setAlertMesssage("Something went wrong! Please try again.");
             console.error("Error writing document: ", error);
+        });
+        history.push({
+            pathname: '/welcome',
+            state: {
+                name: {name}
+            }
         });
         setName('');
         setDOB('');
