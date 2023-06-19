@@ -28,10 +28,10 @@ const useStyles = makeStyles(theme=>({
         ...theme.mixins.toolbar,
         marginBottom:'3em',
         [theme.breakpoints.down('md')]:{
-            marginBottom:'2em'
+            marginBottom:'1em'
         },
         [theme.breakpoints.down('xs')]:{
-            marginBottom:'1.25em'
+            marginBottom:'0.75em'
         }
     },
     logo:{
@@ -140,12 +140,10 @@ export default function Header(props){
    
     const routes = [
         {name:'Home',link:'/',activeIndex:0},
-        {name:'Users',link:'/users',activeIndex:1
-        }, 
         {name:'Create User',link:'/create' ,activeIndex:2},
-        {name:'All Transcation',link:'/history',activeIndex:3},
-        {name:'About Me',link:'/about',activeIndex:4},
-        {name:'Contact Us',link:'/contact',activeIndex:5},
+        {name:'Open Account', link:"/open", activeIndex:4},
+        {name:'Upload Documents', link:"/upload", activeIndex:5}
+        
       
     ];
     useEffect(() => {
@@ -158,9 +156,6 @@ export default function Header(props){
                             props.setSelectedIndex(route.selectedIndex)
                         }
                     }
-                        break;
-                    case '/transfer':
-                        props.setValue(6);
                         break;
                         default:
                             break;
@@ -191,18 +186,6 @@ export default function Header(props){
                         />
                 ))}
             </Tabs>
-            <Button 
-                variant='contained' 
-                color='secondary' 
-                style={{color:'white'}}
-
-                className={classes.button}  
-                component={Link} 
-                to='/transfer'
-                onClick={()=>props.setValue(6)}       
-            >
-                Transfer
-            </Button>
         </React.Fragment>
 
     );

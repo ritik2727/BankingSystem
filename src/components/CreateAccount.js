@@ -2,9 +2,6 @@ import { Button, Grid, useTheme, useMediaQuery, makeStyles, Typography, TextFiel
 import e from 'cors';
 import React, { useState,useEffect } from 'react';
 import { db,auth } from "../firebase";
-import { useHistory } from 'react-router-dom';
-import Welcome from './Welcome';
-
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -32,15 +29,29 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function CreateUser() {
+
+export default function CreateAccount() {
 
     const classes = useStyles();
     const theme = useTheme();
     const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
     const matchesMD = useMediaQuery(theme.breakpoints.down('md'));
     const matchesXS = useMediaQuery(theme.breakpoints.down('xs'));
+    const [posts, setPosts] = useState([]);
+ var user =  auth.currentUser;
 
-
+    console.log(user)
+     useEffect(() => {
+        const getDataFromFirebase = [];
+        const subscriber = db.collection('users').where('email', '==', "ctaylor@apexfintechsolutions.com"
+         ).onSnapshot((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            getDataFromFirebase.push({ ...doc.data(), key: doc.id });
+          });
+          setPosts(getDataFromFirebase);
+        });
+        return () => subscriber();
+      }, [])
 
 
   
@@ -70,6 +81,13 @@ export default function CreateUser() {
 
 
     const [phoneHelper, setPhoneHelper] = useState('');
+    const [annualIncome, setAnnualIncome] = useState('');
+    const [liquidity, setLiquid] = useState('');
+    const[totalNetWorthUSD, setTotalNetWorthUSD] = useState('');
+    const[PositionEmployeed, setPositionEmployed] = useState('');
+    const[Employeer, setEmployer] = useState('');
+    const[yearsEmployed, setYearsEmployed] = useState(0);
+    const[numOfDependants, setNumOfDependants] = useState(0);
 
     const [amount, setAmount] = useState(0)
 
@@ -77,21 +95,12 @@ export default function CreateUser() {
 
     const [alert, setAlert] = useState({ open: false, color: "" });
     const [alertMessage, setAlertMesssage] = useState("");
-   
-   const [user, setUser] = useState(auth.currentUser);
-    // var user = auth.currentUser;
-console.log(user)
-    const [name,setName] = useState(user.displayName);
-    
-    const [email,setEmail] = useState(user.email);
-    const onAmountChange = (e) => {
-        const amount = e.target.value;
-        if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
-            setAmount(amount);
-        }
-    }
+   const[dividendRevinvestment,setDividentReinvestment] = useState("");
 
-    const history = useHistory();
+    const [name,setName] = useState(null);
+    
+    const [email,setEmail] = useState(null);
+    
 
     const onChange = event => {
         let valid;
@@ -134,7 +143,7 @@ console.log(user)
         e.preventDefault();
         setLoading(true);
 
-        db.collection("users").add({
+        db.collection("accounts").add({
             name: name,
             email: email,
             phone: phone,
@@ -144,23 +153,20 @@ console.log(user)
             city: city,
             province: province,
             postcode: postcode,
+            annualIncome:annualIncome,
+            dividendRevinvestment:dividendRevinvestment,
+            
 
         }).then(() => {
             setLoading(false);
             setAlert({ open: true, color: "#4BB543" });
-            setAlertMesssage("Customer Created Successfully !!");
+            setAlertMesssage("Account Created Successfully !!");
             console.log("Document successfully written!");
         }).catch((error) => { 
             setLoading(false);
             setAlert({ open: true, color: "#FF3232" });
             setAlertMesssage("Something went wrong! Please try again.");
             console.error("Error writing document: ", error);
-        });
-        history.push({
-            pathname: '/welcome',
-            state: {
-                name: {name}
-            }
         });
         setName('');
         setDOB('');
@@ -182,7 +188,7 @@ console.log(user)
             marginTop:matchesSM ? '4em'  : matchesMD ? '5em' : undefined,
             marginBottom: matchesMD ? '5em' : undefined
         }}
-    >
+    > 
         <Grid item style={{paddingBottom:50}}>
             <Grid item container direction='column' style={{alignItems:'center'}}>
                 <Grid item>
@@ -191,31 +197,77 @@ console.log(user)
                         align= 'center'
                         style={{lineHeight:1}}
                     >
-                        Register
+                        Create Account
                     </Typography>
-                </Grid>
+                </Grid> 
                 <Grid
                     item
                     container
                     direction='column'
                     style={{maxWidth:matchesXS ? '20em' : matchesSM? '25em' :'40em'}}
                 >
-                <Grid item style={{marginTop:'2em' ,marginBottom:'0.5em'}}>
-                    <Typography style={{color:'#FF0000', padding:10, fontSize:'0.9rem'}}>You must be over 18 and a legal resident of Canada to continue</Typography>
+       <h4>Service profile</h4>
+       <Grid item style={{marginBottom:'0.5em'}}>
+                <Typography style={{color:theme.palette.common.blue}}>Dividend Reinvestiment</Typography>
                     <TextField
-                        id="name"
+                        id="homeAddress"
                         variant="outlined"
-                        label="required"
-                        required
-                        placeholder="Name"
                         fullWidth
-                        //error={senderEmailHelper.length !== 0}
-                         //helperText={senderEmailHelper}
-                        value={name}
-                        onChange={(e)=>setName(e.target.value)}
+                        value={dividendRevinvestment}
+                        onChange={(e)=>setDividentReinvestment(e.target.value)}
+                        required = 'true'
                     />
+
+                </Grid> 
+                <Grid item style={{marginTop:'2em' ,marginBottom:'0.5em'}}>
+                    <Typography style={{color:theme.palette.common.blue}}>Service profile</Typography>
                 </Grid>
-            
+                <h4>Investment profile</h4>
+                <Grid item style={{marginTop:'2em' ,marginBottom:'0.5em'}}>
+                    <Typography style={{color:theme.palette.common.blue}}>Annual Income</Typography>
+                    <input type="number" min="1000.00"  step="10" value={annualIncome}  onChange={(e)=>setAnnualIncome(e.target.value)}  />
+                </Grid>
+                <Grid item style={{marginTop:'2em' ,marginBottom:'0.5em'}}>
+                    <Typography style={{color:theme.palette.common.blue}}>Liquid Net worth</Typography>
+                    <input type="number" min="1000.00"  step="10" value = {liquidity} onChange={(e)=>setLiquid(e.target.value)} />
+                </Grid>
+                <Grid item style={{marginTop:'2em' ,marginBottom:'0.5em'}}>
+                    <Typography style={{color:theme.palette.common.blue}}>Total Net worth</Typography>
+                    <input type="number" min="1000.00"  step="10" value = {totalNetWorthUSD}onChange={(e)=>setTotalNetWorthUSD(e.target.value)}/>
+
+                </Grid>
+           <h4>Employment</h4>
+                <Grid item style={{marginBottom:'0.5em'}}>
+                <Typography style={{color:theme.palette.common.blue}}>Position Employed</Typography>
+                    <TextField
+                        id="homeAddress"
+                        variant="outlined"
+                        fullWidth
+                        value={PositionEmployeed}
+                        onChange={(e)=>setPositionEmployed(e.target.value)}
+                    />
+                </Grid>   
+                <Grid item style={{marginTop:'2em' ,marginBottom:'0.5em'}}>
+                    <Typography style={{color:theme.palette.common.blue}}>Years Employed</Typography>
+                    <input type="number" min="0"  step="0" value={yearsEmployed} onChange={setYearsEmployed}/>
+                </Grid>
+                <Grid item style={{marginBottom:'0.5em'}}>
+                <Typography style={{color:theme.palette.common.blue}}>Employer</Typography>
+                    <TextField
+                        id="homeAddress"
+                        variant="outlined"
+                        fullWidth
+                        //error={homeAddressHelper.length !== 0}
+                        //helperText={homeAddressHelper}
+                        value={Employeer}
+                        onChange={(e)=>setEmployer(e.target.value)}
+                    />
+                </Grid>   
+                <h4>Dependants</h4>
+                  <Grid item style={{marginTop:'2em' ,marginBottom:'0.5em'}}>
+                    <Typography style={{color:theme.palette.common.blue}}>Number of dependants</Typography>
+                    <input type="number" min="0"  step="1" value={numOfDependants} onChange = {setNumOfDependants} />
+                </Grid>
                 <Grid item style={{marginBottom:'0.5em'}}>
                     <Typography style={{color:theme.palette.common.blue}}>DOB</Typography>
                     <input type="date" id="start" name="trip-start"
@@ -223,20 +275,9 @@ console.log(user)
                     onChange={(e)=>setDOB(e.target.value)}
                     min="2002-00-00" max="40-12-31"></input>
                 </Grid>
-                <Grid item style={{marginBottom:'0.5em'}}>
-                <Typography style={{color:theme.palette.common.blue}}>Home Address.</Typography>
-                    <TextField
-                        id="homeAddress"
-                        variant="outlined"
-                        fullWidth
-                        //error={homeAddressHelper.length !== 0}
-                        //helperText={homeAddressHelper}
-                        value={homeAddress}
-                        onChange={(e)=>setHomeAddress(e.target.value)}
-                    />
-                </Grid>
-                <Grid item style={{marginBottom:'0.5em'}}>
-                    <Typography style={{color:theme.palette.common.blue}}>Address Line 2 </Typography>
+
+                      <Grid item style={{marginBottom:'0.5em'}}>
+                    <Typography style={{color:theme.palette.common.blue}}>Citizenship</Typography>
                     <TextField
                         id="addressLine2"
                         variant="outlined"
@@ -247,43 +288,76 @@ console.log(user)
                         onChange={(e)=>setAddressLine2(e.target.value)}
 
 
+                    />  {posts.map((data) => (  
+                           <Grid item style={{marginBottom:'0.5em'}}>
+                    
+                   <h4> Home address</h4>       
+                <Typography style={{color:theme.palette.common.blue}}>Home Address.</Typography>
+                    <TextField
+                        id="homeAddress"
+                        variant="outlined"
+                        fullWidth
+                        //error={homeAddressHelper.length !== 0}
+                        //helperText={homeAddressHelper}
+                        value={data.homeAddress}
+                        onChange={(e)=>setHomeAddress(e.target.value)}
+                        
                     />
-                </Grid>
+                </Grid> ))}
+                {posts.map((data) => (  
+                <Grid item style={{marginBottom:'0.5em'}}>
+                    <Typography style={{color:theme.palette.common.blue}}>Address Line 2 </Typography>
+                    <TextField
+                        id="addressLine2"
+                        variant="outlined"
+                        fullWidth
+                        //error={addressLine2Helper.length !== 0}
+                        //helperText={addressLine2Helper}
+                        value={data.addressLine2}
+                        onChange={(e)=>setAddressLine2(e.target.value)}
+
+
+                    />
+                </Grid>))}
+                {posts.map((data) => (  
                 <Grid item style={{marginBottom:'0.5em'}}>
                     <Typography style={{color:theme.palette.common.blue}}>City</Typography>
                     <TextField
                         id="city"
                         variant="outlined"
                         fullWidth
-                        value={city}
+                        value={data.city}
                         onChange={(e)=>setCity(e.target.value)}
 
 
                     />
-                </Grid>
+                </Grid>))}
+                {posts.map((data) => (  
                 <Grid item style={{marginBottom:'0.5em'}}>
                     <Typography style={{color:theme.palette.common.blue}}>Province</Typography>
                     <TextField
                         id="province"
                         variant="outlined"
                         fullWidth
-                        value={province}
+                        value={data.province}
                         onChange={(e)=>setProvince(e.target.value)}
 
                     />
-                </Grid>
+                </Grid>))}
+                {posts.map((data) => (  
                 <Grid item style={{marginBottom:'0.5em'}}>
                     <Typography style={{color:theme.palette.common.blue}}>Postcode</Typography>
                     <TextField
                         id="postcode"
                         variant="outlined"
                         fullWidth
-                        value={postcode}
+                        value={data.postcode}
                         onChange={(e)=>setPostcode(e.target.value)}
 
 
                     />
-                </Grid>
+                </Grid>))}
+                {posts.map((data) => (  
                 <Grid item style={{marginBottom:'0.5em'}}>
                 <Typography style={{color:theme.palette.common.blue}}>Phone Number.</Typography>
                     <TextField
@@ -292,30 +366,17 @@ console.log(user)
                         fullWidth
                         error={phoneHelper.length !== 0}
                         helperText={phoneHelper}
-                        value={phone}
+                        value={data.phone}
                         onChange={onChange}
+                        required = 'true'
                     />
-                </Grid>
-                <Grid item style={{marginBottom:'0.5em'}}>
-                    <Typography style={{color:theme.palette.common.blue}}>Email Address</Typography>
-                    <TextField
-                        id="email"
-                        variant="outlined"
-                        fullWidth
-                        error={emailHelper.length !== 0}
-                        helperText={emailHelper}
-                        value={email}
-                        onChange={(e)=>setEmail(e.target.value)}
-                    />
-                </Grid>
+                </Grid>))}
 
+             
                 <Grid item container justifyContent='center' style={{marginTop:'2em'}}>
                     <Button
                         disabled={
-                            name.length === 0 ||
-                            email.length === 0 ||
                             phone.length === 0 ||
-                            amount.length === 0 ||
                             emailHelper.length !== 0 ||
                             phoneHelper.length !== 0
                         }
@@ -341,6 +402,7 @@ console.log(user)
         autoHideDuration={4000}
         onClose={() => setAlert(false)}
       />
+    </Grid>
     </Grid>
     )
 };
